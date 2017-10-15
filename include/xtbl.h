@@ -1,7 +1,7 @@
 #ifndef _XARR_TBL_H
 #define _XARR_TBL_H
 
-#include "commons.h"
+#include "common.h"
 #include "xobj.h"
 
 #define DEFAULT_BUFSIZ 2

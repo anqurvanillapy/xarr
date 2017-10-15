@@ -1,7 +1,7 @@
 #ifndef _XARR_OBJ_H
 #define _XARR_OBJ_H
 
-#include "commons.h"
+#include "common.h"
 
 #define XARR_NEWOBJ(ptr) do { \
         ptr = XARR_NEW(xarr_obj_t); \
@@ -38,7 +38,6 @@ xarr_int2obj(int val)
 {
     xarr_obj_t *new_obj;
     XARR_NEWOBJ(new_obj);
-    memset(new_obj, 0, sizeof(xarr_obj_t));
     new_obj->type = XARR_INT;
     new_obj->ndata = val;
     return new_obj;
@@ -71,6 +70,7 @@ xarr_sz2obj(char *sz)
     if (*sz == '\0') return NULL;
     xarr_obj_t *new_obj;
     XARR_NEWOBJ(new_obj);
+    new_obj->type = XARR_STR;
     new_obj->strdata = XARR_NEW(_xarr_str_t);
     new_obj->strdata->size = 0; // lazy bounds check
     new_obj->strdata->str = sz;
@@ -83,6 +83,7 @@ xarr_sz2obj1(char *sz)
     if (*sz == '\0') return NULL;
     xarr_obj_t *new_obj;
     XARR_NEWOBJ(new_obj);
+    new_obj->type = XARR_STR;
     size_t len = _xarr_strlen(sz);
     XARR_NEWSTR(new_obj, sz, len);
     return new_obj;
